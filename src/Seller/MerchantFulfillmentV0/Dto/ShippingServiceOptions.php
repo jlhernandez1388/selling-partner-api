@@ -33,7 +33,7 @@ final class ShippingServiceOptions extends Dto
      */
     public function __construct(
         public string $deliveryExperience,
-        public bool $carrierWillPickUp,
+        public bool $carrierWillPickUp = false,
         public ?CurrencyAmount $declaredValue = null,
         public ?string $carrierWillPickUpOption = null,
         public ?string $labelFormat = null,
