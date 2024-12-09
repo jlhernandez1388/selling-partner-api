@@ -14,16 +14,20 @@ use SellingPartnerApi\Dto;
 
 final class LabelDimensions extends Dto
 {
-    protected static array $attributeMap = ['length' => 'Length', 'width' => 'Width', 'unit' => 'Unit'];
+    protected static array $attributeMap = [
+        'length' => 'Length', 
+        'width' => 'Width', 
+        'unit' => 'Unit'
+    ];
 
     /**
-     * @param  float  $length  A label dimension.
-     * @param  float  $width  A label dimension.
-     * @param  string  $unit  The unit of length.
+     * @param  ?float  $length  A label dimension.
+     * @param  ?float  $width  A label dimension.
+     * @param  ?string  $unit  The unit of length.
      */
     public function __construct(
-        public float $length,
-        public float $width,
-        public string $unit,
+        public ?float $length = null,
+        public ?float $width = null,
+        public ?string $unit = null,
     ) {}
 }
