@@ -20,7 +20,7 @@ final class InventorySummary extends Dto
      * @param  ?string  $sellerSku  The seller SKU of the item.
      * @param  ?string  $condition  The condition of the item as described by the seller (for example, New Item).
      * @param  ?InventoryDetails  $inventoryDetails  Summarized inventory details. This object will not appear if the details parameter in the request is false.
-     * @param  ?\DateTimeInterface  $lastUpdatedTime  The date and time that any quantity was last updated.
+     * @param  ?string  $lastUpdatedTime  The date and time that any quantity was last updated.
      * @param  ?string  $productName  The localized language product title of the item within the specific marketplace.
      * @param  ?int  $totalQuantity  The total number of units in an inbound shipment or in Amazon fulfillment centers.
      * @param  ?string[]  $stores  A list of seller-enrolled stores that apply to this seller SKU.
@@ -31,7 +31,7 @@ final class InventorySummary extends Dto
         public ?string $sellerSku = null,
         public ?string $condition = null,
         public ?InventoryDetails $inventoryDetails = null,
-        public ?\DateTimeInterface $lastUpdatedTime = null,
+        public ?string $lastUpdatedTime = null,
         public ?string $productName = null,
         public ?int $totalQuantity = null,
         public ?array $stores = null,
