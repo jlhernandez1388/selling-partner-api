@@ -14,14 +14,16 @@ use SellingPartnerApi\Dto;
 
 final class Breakdown extends Dto
 {
+    protected static array $complexArrayTypes = ['breakdowns' => Breakdown::class];
+
     /**
      * @param  ?string  $breakdownType  The type of charge.
      * @param  ?Currency  $breakdownAmount  A currency type and amount.
-     * @param  ?Breakdown  $breakdowns  Details about the movement of money in the financial transaction. Breakdowns are further categorized into breakdown types, breakdown amounts, and further breakdowns.
+     * @param  Breakdown[]|null  $breakdowns  A list of breakdowns that detail how the total amount is calculated for the transaction.
      */
     public function __construct(
         public ?string $breakdownType = null,
         public ?Currency $breakdownAmount = null,
-        public ?Breakdown $breakdowns = null,
+        public ?array $breakdowns = null,
     ) {}
 }

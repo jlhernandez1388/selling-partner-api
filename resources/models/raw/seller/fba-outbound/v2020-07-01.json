@@ -3604,7 +3604,7 @@
                         "$ref": "#/components/schemas/DropOffLocation"
                     }
                 },
-                "description": "The delivery preferences applied to the destination address. These preferences will be applied when possible and are best effort.\nThis feature is currently supported only in the JP marketplace and not applicable for other marketplaces."
+                "description": "The delivery preferences applied to the destination address. These preferences are applied when possible and are best effort.\nThis feature is currently supported only in the JP marketplace and not applicable for other marketplaces.\nFor eligible orders, the default delivery preference will be to deliver the package unattended at the front door, unless you specify otherwise."
             },
             "DropOffLocation": {
                 "required": [
@@ -5040,7 +5040,10 @@
                     },
                     "currentStatusDescription": {
                         "type": "string",
-                        "description": "Description corresponding to the `CurrentStatus` value."
+                        "description": "Description corresponding to the CurrentStatus value."
+                    },
+                    "deliveryWindow": {
+                        "$ref": "#/components/schemas/DateRange"
                     },
                     "signedForBy": {
                         "type": "string",
@@ -5574,7 +5577,7 @@
                     "sellerFulfillmentOrderItemId": {
                         "maxLength": 50,
                         "type": "string",
-                        "description": "Identifies the fulfillment order item to update. Created with a previous call to the `createFulfillmentOrder` operation."
+                        "description": "Identifies the fulfillment order item to update. Created with a previous call to the createFulfillmentOrder operation."
                     },
                     "quantity": {
                         "$ref": "#/components/schemas/Quantity"
@@ -5744,7 +5747,7 @@
             },
             "ShippingSpeedCategory": {
                 "type": "string",
-                "description": "The shipping method used for the fulfillment order. When this value is `ScheduledDelivery`, choose Ship for the `fulfillmentAction`. Hold is not a valid `fulfillmentAction` value when the `shippingSpeedCategory` value is `ScheduledDelivery`.",
+                "description": "The shipping method used for the fulfillment order. When this value is `ScheduledDelivery`, choose `Ship` for the `fulfillmentAction`. `Hold` is not a valid `fulfillmentAction` value when the `shippingSpeedCategory` value is `ScheduledDelivery`.\nNote: Shipping method service level agreements vary by marketplace. Sellers should refer to the [Seller Central](https://developer-docs.amazon.com/sp-api/docs/seller-central-urls) website in their marketplace for shipping method service level agreements and fulfillment fees.",
                 "enum": [
                     "Standard",
                     "Expedited",

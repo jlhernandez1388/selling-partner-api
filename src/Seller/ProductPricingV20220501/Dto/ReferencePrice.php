@@ -15,8 +15,8 @@ use SellingPartnerApi\Dto;
 final class ReferencePrice extends Dto
 {
     /**
-     * @param  string  $name  The name of the reference price like `CompetitivePriceThreshold`.
-     * @param  MoneyType  $price  Currency type and monetary value. Schema for demonstrating pricing info.
+     * @param  string  $name  Reference price type (e.g., `CompetitivePriceThreshold`, `WasPrice`, `CompetitivePrice`). For definitions, see the [Product Pricing API Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/product-pricing-api-v2022-05-01-use-case-guide).
+     * @param  MoneyType  $price  Currency type and monetary value schema to demonstrate pricing information.
      */
     public function __construct(
         public string $name,

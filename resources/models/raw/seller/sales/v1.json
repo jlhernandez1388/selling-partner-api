@@ -225,6 +225,29 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "name": "amazonProgram",
+                        "in": "query",
+                        "description": "Filters the results by the Amazon program that you specify. Do not include this filter if you want the response to include order metrics for all programs. **Example:** `AmazonHaul` returns order metrics for the Amazon Haul program only.",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "AmazonHaul"
+                            ],
+                            "x-docgen-enum-table-extension": [
+                                {
+                                    "value": "AmazonHaul",
+                                    "description": "Amazon Haul sales"
+                                }
+                            ]
+                        },
+                        "x-docgen-enum-table-extension": [
+                            {
+                                "value": "AmazonHaul",
+                                "description": "Amazon Haul sales"
+                            }
+                        ]
                     }
                 ],
                 "responses": {
@@ -232,7 +255,7 @@
                         "description": "OrderMetric action taken on the resource OrderMetrics.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -488,7 +511,7 @@
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -512,7 +535,7 @@
                         "description": "403 can be caused for reasons like Access Denied, Unauthorized, Expired Token, Invalid Signature or Resource Not Found.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -530,7 +553,7 @@
                         "description": "The resource specified does not exist.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -554,7 +577,7 @@
                         "description": "The request size exceeded the maximum accepted size.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -578,7 +601,7 @@
                         "description": "The entity of the request is in a format not supported by the requested resource.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -602,7 +625,7 @@
                         "description": "The frequency of requests was greater than allowed.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -626,7 +649,7 @@
                         "description": "Encountered an unexpected condition which prevented the server from fulfilling the request.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -650,7 +673,7 @@
                         "description": "Temporary overloading or maintenance of the server.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }

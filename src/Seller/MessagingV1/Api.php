@@ -21,7 +21,6 @@ use SellingPartnerApi\Seller\MessagingV1\Requests\CreateConfirmOrderDetails;
 use SellingPartnerApi\Seller\MessagingV1\Requests\CreateConfirmServiceDetails;
 use SellingPartnerApi\Seller\MessagingV1\Requests\CreateDigitalAccessKey;
 use SellingPartnerApi\Seller\MessagingV1\Requests\CreateLegalDisclosure;
-use SellingPartnerApi\Seller\MessagingV1\Requests\CreateNegativeFeedbackRemoval;
 use SellingPartnerApi\Seller\MessagingV1\Requests\CreateUnexpectedProblem;
 use SellingPartnerApi\Seller\MessagingV1\Requests\CreateWarranty;
 use SellingPartnerApi\Seller\MessagingV1\Requests\GetAttributes;
@@ -32,7 +31,7 @@ class Api extends BaseResource
 {
     /**
      * @param  string  $amazonOrderId  An Amazon order identifier. This specifies the order for which you want a list of available message types.
-     * @param  array  $marketplaceIds  A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
+     * @param  array  $marketplaceIds  A marketplace identifier. This identifies the marketplace in which the order was placed. You can only specify one marketplace.
      */
     public function getMessagingActionsForOrder(string $amazonOrderId, array $marketplaceIds): Response
     {
@@ -42,9 +41,9 @@ class Api extends BaseResource
     }
 
     /**
-     * @param  string  $amazonOrderId  An Amazon order identifier. This specifies the order for which a message is sent.
+     * @param  string  $amazonOrderId  An Amazon order identifier. This identifies the order for which a message is sent.
      * @param  CreateConfirmCustomizationDetailsRequest  $createConfirmCustomizationDetailsRequest  The request schema for the confirmCustomizationDetails operation.
-     * @param  array  $marketplaceIds  A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
+     * @param  array  $marketplaceIds  A marketplace identifier. This identifies the marketplace in which the order was placed. You can only specify one marketplace.
      */
     public function confirmCustomizationDetails(
         string $amazonOrderId,
@@ -57,9 +56,9 @@ class Api extends BaseResource
     }
 
     /**
-     * @param  string  $amazonOrderId  An Amazon order identifier. This specifies the order for which a message is sent.
+     * @param  string  $amazonOrderId  An Amazon order identifier. This identifies the order for which a message is sent.
      * @param  CreateConfirmDeliveryDetailsRequest  $createConfirmDeliveryDetailsRequest  The request schema for the createConfirmDeliveryDetails operation.
-     * @param  array  $marketplaceIds  A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
+     * @param  array  $marketplaceIds  A marketplace identifier. This identifies the marketplace in which the order was placed. You can only specify one marketplace.
      */
     public function createConfirmDeliveryDetails(
         string $amazonOrderId,
@@ -72,9 +71,9 @@ class Api extends BaseResource
     }
 
     /**
-     * @param  string  $amazonOrderId  An Amazon order identifier. This specifies the order for which a message is sent.
+     * @param  string  $amazonOrderId  An Amazon order identifier. This identifies the order for which a message is sent.
      * @param  CreateLegalDisclosureRequest  $createLegalDisclosureRequest  The request schema for the createLegalDisclosure operation.
-     * @param  array  $marketplaceIds  A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
+     * @param  array  $marketplaceIds  A marketplace identifier. This identifies the marketplace in which the order was placed. You can only specify one marketplace.
      */
     public function createLegalDisclosure(
         string $amazonOrderId,
@@ -87,20 +86,9 @@ class Api extends BaseResource
     }
 
     /**
-     * @param  string  $amazonOrderId  An Amazon order identifier. This specifies the order for which a message is sent.
-     * @param  array  $marketplaceIds  A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
-     */
-    public function createNegativeFeedbackRemoval(string $amazonOrderId, array $marketplaceIds): Response
-    {
-        $request = new CreateNegativeFeedbackRemoval($amazonOrderId, $marketplaceIds);
-
-        return $this->connector->send($request);
-    }
-
-    /**
-     * @param  string  $amazonOrderId  An Amazon order identifier. This specifies the order for which a message is sent.
+     * @param  string  $amazonOrderId  An Amazon order identifier. This identifies the order for which a message is sent.
      * @param  CreateConfirmOrderDetailsRequest  $createConfirmOrderDetailsRequest  The request schema for the createConfirmOrderDetails operation.
-     * @param  array  $marketplaceIds  A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
+     * @param  array  $marketplaceIds  A marketplace identifier. This identifies the marketplace in which the order was placed. You can only specify one marketplace.
      */
     public function createConfirmOrderDetails(
         string $amazonOrderId,
@@ -113,9 +101,9 @@ class Api extends BaseResource
     }
 
     /**
-     * @param  string  $amazonOrderId  An Amazon order identifier. This specifies the order for which a message is sent.
+     * @param  string  $amazonOrderId  An Amazon order identifier. This identifies the order for which a message is sent.
      * @param  CreateConfirmServiceDetailsRequest  $createConfirmServiceDetailsRequest  The request schema for the createConfirmServiceDetails operation.
-     * @param  array  $marketplaceIds  A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
+     * @param  array  $marketplaceIds  A marketplace identifier. This identifies the marketplace in which the order was placed. You can only specify one marketplace.
      */
     public function createConfirmServiceDetails(
         string $amazonOrderId,
@@ -128,9 +116,9 @@ class Api extends BaseResource
     }
 
     /**
-     * @param  string  $amazonOrderId  An Amazon order identifier. This specifies the order for which a message is sent.
+     * @param  string  $amazonOrderId  An Amazon order identifier. This identifies the order for which a message is sent.
      * @param  CreateAmazonMotorsRequest  $createAmazonMotorsRequest  The request schema for the createAmazonMotors operation.
-     * @param  array  $marketplaceIds  A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
+     * @param  array  $marketplaceIds  A marketplace identifier. This identifies the marketplace in which the order was placed. You can only specify one marketplace.
      */
     public function createAmazonMotors(
         string $amazonOrderId,
@@ -143,9 +131,9 @@ class Api extends BaseResource
     }
 
     /**
-     * @param  string  $amazonOrderId  An Amazon order identifier. This specifies the order for which a message is sent.
+     * @param  string  $amazonOrderId  An Amazon order identifier. This identifies the order for which a message is sent.
      * @param  CreateWarrantyRequest  $createWarrantyRequest  The request schema for the createWarranty operation.
-     * @param  array  $marketplaceIds  A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
+     * @param  array  $marketplaceIds  A marketplace identifier. This identifies the marketplace in which the order was placed. You can only specify one marketplace.
      */
     public function createWarranty(
         string $amazonOrderId,
@@ -158,8 +146,8 @@ class Api extends BaseResource
     }
 
     /**
-     * @param  string  $amazonOrderId  An Amazon order identifier. This specifies the order for which a message is sent.
-     * @param  array  $marketplaceIds  A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
+     * @param  string  $amazonOrderId  An Amazon order identifier. This identifies the order for which a message is sent.
+     * @param  array  $marketplaceIds  A marketplace identifier. This identifies the marketplace in which the order was placed. You can only specify one marketplace.
      */
     public function getAttributes(string $amazonOrderId, array $marketplaceIds): Response
     {
@@ -169,9 +157,9 @@ class Api extends BaseResource
     }
 
     /**
-     * @param  string  $amazonOrderId  An Amazon order identifier. This specifies the order for which a message is sent.
-     * @param  CreateDigitalAccessKeyRequest  $createDigitalAccessKeyRequest  The request schema for the createDigitalAccessKey operation.
-     * @param  array  $marketplaceIds  A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
+     * @param  string  $amazonOrderId  An Amazon order identifier. This identifies the order for which a message is sent.
+     * @param  CreateDigitalAccessKeyRequest  $createDigitalAccessKeyRequest  The request schema for the `createDigitalAccessKey` operation.
+     * @param  array  $marketplaceIds  A marketplace identifier. This identifies the marketplace in which the order was placed. You can only specify one marketplace.
      */
     public function createDigitalAccessKey(
         string $amazonOrderId,
@@ -184,9 +172,9 @@ class Api extends BaseResource
     }
 
     /**
-     * @param  string  $amazonOrderId  An Amazon order identifier. This specifies the order for which a message is sent.
+     * @param  string  $amazonOrderId  An Amazon order identifier. This identifies the order for which a message is sent.
      * @param  CreateUnexpectedProblemRequest  $createUnexpectedProblemRequest  The request schema for the createUnexpectedProblem operation.
-     * @param  array  $marketplaceIds  A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
+     * @param  array  $marketplaceIds  A marketplace identifier. This identifies the marketplace in which the order was placed. You can only specify one marketplace.
      */
     public function createUnexpectedProblem(
         string $amazonOrderId,
@@ -199,9 +187,9 @@ class Api extends BaseResource
     }
 
     /**
-     * @param  string  $amazonOrderId  An Amazon order identifier. This specifies the order for which a message is sent.
-     * @param  InvoiceRequest  $invoiceRequest  The request schema for the sendInvoice operation.
-     * @param  array  $marketplaceIds  A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
+     * @param  string  $amazonOrderId  An Amazon order identifier. This identifies the order for which a message is sent.
+     * @param  InvoiceRequest  $invoiceRequest  The request schema for the `sendInvoice` operation.
+     * @param  array  $marketplaceIds  A marketplace identifier. This identifies the marketplace in which the order was placed. You can only specify one marketplace.
      */
     public function sendInvoice(string $amazonOrderId, InvoiceRequest $invoiceRequest, array $marketplaceIds): Response
     {

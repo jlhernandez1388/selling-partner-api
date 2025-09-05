@@ -1,4 +1,18 @@
 {
+  "GET_BRAND_ANALYTICS_SEARCH_CATALOG_PERFORMANCE_REPORT": {
+    "contentType": "application/json",
+    "restricted": false,
+    "requestable": true,
+    "schedulable": false,
+    "quoteEnclosure": false
+  },
+  "GET_BRAND_ANALYTICS_SEARCH_QUERY_PERFORMANCE_REPORT": {
+    "contentType": "application/json",
+    "restricted": false,
+    "requestable": true,
+    "schedulable": false,
+    "quoteEnclosure": false
+  },
   "GET_BRAND_ANALYTICS_MARKET_BASKET_REPORT": {
     "contentType": "application/json",
     "restricted": false,
@@ -63,6 +77,13 @@
     "quoteEnclosure": false
   },
   "GET_VENDOR_INVENTORY_REPORT": {
+    "contentType": "application/json",
+    "restricted": false,
+    "requestable": true,
+    "schedulable": false,
+    "quoteEnclosure": false
+  },
+  "GET_VENDOR_REAL_TIME_INVENTORY_REPORT": {
     "contentType": "application/json",
     "restricted": false,
     "requestable": true,
@@ -702,6 +723,20 @@
   "GET_VAT_TRANSACTION_DATA": {
     "contentType": "text/tab-separated-values",
     "restricted": true,
+    "requestable": true,
+    "schedulable": false,
+    "quoteEnclosure": false
+  },
+  "GET_DATE_RANGE_FINANCIAL_TRANSACTION_DATA": {
+    "contentType": "text/csv",
+    "restricted": false,
+    "requestable": true,
+    "schedulable": false,
+    "quoteEnclosure": false
+  },
+  "GET_DATE_RANGE_FINANCIAL_HOLDS_DATA": {
+    "contentType": "text/csv",
+    "restricted": false,
     "requestable": true,
     "schedulable": false,
     "quoteEnclosure": false

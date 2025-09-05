@@ -15,15 +15,13 @@ use SellingPartnerApi\Dto;
 final class DeferredContext extends Dto
 {
     /**
-     * @param  ?string  $deferralReason  Deferral policy applied on the transaction.
+     * @param  ?string  $deferralReason  The deferral policy applied to the transaction.
      *
-     * **Examples:** `B2B`,`DD7`
-     * @param  ?\DateTimeInterface  $maturityDate  A date in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
-     * @param  ?string  $deferralStatus  The status of the transaction. For example, `HOLD`,`RELEASE`.
+     * **Examples:** `B2B` (invoiced orders), `DD7` (delivery date policy)
+     * @param  ?\DateTimeInterface  $maturityDate  Fields with a schema type of date are in ISO 8601 date time format (for example GroupBeginDate).
      */
     public function __construct(
         public ?string $deferralReason = null,
         public ?\DateTimeInterface $maturityDate = null,
-        public ?string $deferralStatus = null,
     ) {}
 }

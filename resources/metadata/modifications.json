@@ -27,6 +27,11 @@
           "value": [
             "ShipFromAddress"
           ]
+        },
+        {
+            "comment": "Sometimes Amazon sends a PrepDetailsList with a single empty PrepDetails object (see https://github.com/jlevers/selling-partner-api/issues/845)",
+            "action": "delete",
+            "path": "components.schemas.PrepDetails.required"
         }
       ]
     },
@@ -43,6 +48,18 @@
             "status",
             "statusChangedDate"
           ]
+        },
+        {
+            "comment": "Error Response from Amazon for GetFulfillmentOrder is an array",
+            "action": "replace",
+            "path": "components.schemas.GetFulfillmentOrderResponse.properties.errors",
+            "value": {
+                "type": "array",
+                "description": "A list of error responses returned when a request is unsuccessful.",
+                "items": {
+                    "$ref": "#/components/schemas/Error"
+                }
+            }
         }
       ]
     },
@@ -61,6 +78,12 @@
             "ShippingServiceOfferId",
             "ShippingServiceOptions"
           ]
+        },
+        {
+            "comment": "Remove required 'CarrierWillPickUp', it is not always present in Amazon responses",
+            "action": "replace",
+            "path": "components.schemas.ShippingServiceOptions.required",
+            "value": ["DeliveryExperience"]
         }
       ]
     },
@@ -142,6 +165,40 @@
           "action": "replace",
           "path": "paths./shipping/v2/accessPoints.get.parameters.4.required",
           "value": false
+        },
+        {
+            "comment": "Rename the PUT-based linkCarrierAccount operation to updateLinkedCarrierAccount, since there are two operations named linkCarrierAccount",
+            "action": "replace",
+            "path": "paths./shipping/v2/carrierAccounts/{carrierId}.put.operationId",
+            "value": "updateLinkedCarrierAccount"
+        }
+      ]
+    },
+    "product-pricing": {
+      "0": [
+        {
+          "comment": "Error Response from Amazon for GetOffersResponse is an array",
+          "action": "replace",
+          "path": "components.schemas.ErrorList.type",
+          "value": "array"
+        },
+        {
+          "comment": "Error Response from Amazon for GetOffersResponse is an array",
+          "action": "replace",
+          "path": "components.schemas.ErrorList.items",
+          "value": {
+            "$ref": "#/components/schemas/Error"
+          }
+        },
+        {
+          "comment": "Remove unneeded objects from ErrorList",
+          "action": "delete",
+          "path": "components.schemas.ErrorList.properties"
+        },
+        {
+          "comment": "Remove unneeded objects from ErrorList",
+          "action": "delete",
+          "path": "components.schemas.ErrorList.required"
         }
       ]
     }

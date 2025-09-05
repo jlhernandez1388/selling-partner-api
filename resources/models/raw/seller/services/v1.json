@@ -3792,7 +3792,7 @@
                         "description": "Success response.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3842,6 +3842,27 @@
                                                             "contentSha256": "z06EuBzgzc7GiDNVqcxMqYEr7n0BCS9EtNN7szHe0RT="
                                                         }
                                                     ]
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "response": ""
+                                },
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "serviceJobId": {
+                                                "value": "validJobId-1-9cb9bc29-3d7d-5e49-5709-efb693t25687"
+                                            },
+                                            "appointmentId": {
+                                                "value": "validAppointmentId-1-9cb9bc29-3d7d-5e49-5709-efb693t25687_87b9d5f2-839d-y13e-sd4d-dae1c3996s3d"
+                                            },
+                                            "body": {
+                                                "value": {
+                                                    "estimatedArrivalTime": {
+                                                        "startTime": "2000-01-01T09:00:00.000Z",
+                                                        "endTime": "2000-01-01T09:30:00.000Z"
+                                                    }
                                                 }
                                             }
                                         }
@@ -4141,7 +4162,7 @@
                         "description": "403 can be caused for reasons like Access Denied, Unauthorized, Expired Token, Invalid Signature or Resource Not Found.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -4204,7 +4225,7 @@
                         "description": "The resource specified does not exist.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -4228,7 +4249,7 @@
                         "description": "The request size exceeded the maximum accepted size.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -4252,7 +4273,7 @@
                         "description": "The entity of the request is in a format not supported by the requested resource.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -4276,7 +4297,7 @@
                         "description": "Unprocessable Entity. Unable to process the contained instructions.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -4644,6 +4665,59 @@
                                         {
                                             "code": "InvalidInput",
                                             "message": "Appointment end time should be after start time. Please check the input again.",
+                                            "details": ""
+                                        }
+                                    ]
+                                },
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "serviceJobId": {
+                                                "value": "validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                            },
+                                            "appointmentId": {
+                                                "value": "validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468_00b9d5f2-839d-c13e-b8cd-dae1c3995b2a"
+                                            },
+                                            "body": {
+                                                "value": {
+                                                    "estimatedArrivalTime": {
+                                                        "startTime": "2021-01-01T10:00:00.000Z"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "response": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Failed to process input. Reason: ETA start and end time both are mandatory field as part of estimatedArrivalTime object. Please check the input again",
+                                            "details": ""
+                                        }
+                                    ]
+                                },
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "serviceJobId": {
+                                                "value": "validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                            },
+                                            "appointmentId": {
+                                                "value": "validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468_00b9d5f2-839d-c13e-b8cd-dae1c3995b2a"
+                                            },
+                                            "body": {
+                                                "value": {
+                                                    "estimatedArrivalTime": {
+                                                        "startTime": "2021-01-01T10-00:00.000Z",
+                                                        "endTime": "2000-01-01T10:30:00.000Z"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "response": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Could not parse given time input 2021-01-01T10-00:00.000Z. Please provide time in ISO8601 format",
                                             "details": ""
                                         }
                                     ]
@@ -5195,7 +5269,7 @@
                         "description": "The frequency of requests was greater than allowed.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -5219,7 +5293,7 @@
                         "description": "Encountered an unexpected condition which prevented the server from fulfilling the request.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -5243,7 +5317,7 @@
                         "description": "Temporary overloading or maintenance of the server.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -7536,7 +7610,7 @@
                         "description": "Success response.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -7574,7 +7648,7 @@
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -7619,7 +7693,7 @@
                         "description": "403 can be caused for reasons like Access Denied, Unauthorized, Expired Token, Invalid Signature or Resource Not Found.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -7637,7 +7711,7 @@
                         "description": "The reservation specified does not exist.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -7682,7 +7756,7 @@
                         "description": "The request size exceeded the maximum accepted size.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -7706,7 +7780,7 @@
                         "description": "The entity of the request is in a format not supported by the requested resource.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -7730,7 +7804,7 @@
                         "description": "The frequency of requests was greater than allowed.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -7754,7 +7828,7 @@
                         "description": "Encountered an unexpected condition which prevented the server from fulfilling the request.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -7778,7 +7852,7 @@
                         "description": "Temporary overloading or maintenance of the server.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -8690,7 +8764,7 @@
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -8794,7 +8868,7 @@
                         "description": "The resource specified does not exist.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -8818,7 +8892,7 @@
                         "description": "The request size exceeded the maximum accepted size.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -8916,7 +8990,7 @@
                         "description": "The frequency of requests was greater than allowed.",
                         "headers": {
                             "x-amzn-requestid": {
-                                "description": "Unique request reference ID.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -8964,7 +9038,7 @@
                         "description": "Temporary overloading or maintenance of the server.",
                         "headers": {
                             "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                                "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -9680,7 +9754,7 @@
                     },
                     "message": {
                         "type": "string",
-                        "description": "A message that describes the error condition in a human-readable form."
+                        "description": "A message that describes the error condition."
                     },
                     "details": {
                         "type": "string",
@@ -9889,6 +9963,9 @@
             "SetAppointmentFulfillmentDataRequest": {
                 "type": "object",
                 "properties": {
+                    "estimatedArrivalTime": {
+                        "$ref": "#/components/schemas/DateTimeRange"
+                    },
                     "fulfillmentTime": {
                         "$ref": "#/components/schemas/FulfillmentTime"
                     },
@@ -9916,6 +9993,26 @@
                     }
                 },
                 "description": "Input for fulfillment time details"
+            },
+            "DateTimeRange": {
+                "required": [
+                    "endTime",
+                    "startTime"
+                ],
+                "type": "object",
+                "properties": {
+                    "startTime": {
+                        "type": "string",
+                        "description": "The beginning of the time range. Must be in UTC in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.",
+                        "format": "date-time"
+                    },
+                    "endTime": {
+                        "type": "string",
+                        "description": "The end of the time range. Must be in UTC in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.",
+                        "format": "date-time"
+                    }
+                },
+                "description": "A range of time."
             },
             "FulfillmentDocuments": {
                 "type": "array",

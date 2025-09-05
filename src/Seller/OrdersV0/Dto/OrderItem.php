@@ -113,10 +113,10 @@ final class OrderItem extends Dto
      * @param  ?SubstitutionPreferences  $substitutionPreferences  Substitution preferences for an order item.
      * @param  ?Measurement  $measurement  Measurement information for an order item.
      * @param  ?ShippingConstraints  $shippingConstraints  Delivery constraints applicable to this order.
-     * @param  ?AmazonPrograms  $amazonPrograms  Contains the list of programs that are associated with an item.
+     * @param  ?AmazonPrograms  $amazonPrograms  Contains the list of programs that Amazon associates with an item.
      *
      * Possible programs are:
-     *  - **Subscribe and Save**: Offers recurring, scheduled deliveries to Amazon customers and Amazon Business customers for their frequently ordered products.
+     *  - **Subscribe and Save**: Offers recurring, scheduled deliveries to Amazon customers and Amazon Business customers for their frequently ordered products. - **FBM Ship+**: Unlocks expedited shipping without the extra cost. Helps you to provide accurate and fast delivery dates to Amazon customers. You also receive protection from late deliveries, a discount on expedited shipping rates, and cash back when you ship.
      */
     public function __construct(
         public string $asin,

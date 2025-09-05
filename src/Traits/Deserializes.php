@@ -15,13 +15,7 @@ trait Deserializes
 {
     use HasComplexArrayTypes;
 
-    protected static array $validDatetimeFormats = [
-        'Y-m-d\TH:i:s\Z',
-        DATE_ATOM,
-        'Y-m-d\TH:i:s.vp',
-        'Y-m-d\TH:i\Z',
-        'Y-m-d',
-    ];
+    protected static array $validDatetimeFormats = ['Y-m-d\TH:i:s\Z', DATE_ATOM, 'Y-m-d\TH:i:s.vp', 'Y-m-d\TH:i\Z', 'Y-m-d'];
 
     public static function deserialize(mixed $data): mixed
     {
@@ -78,7 +72,12 @@ trait Deserializes
             $_value = match ($type) {
                 'int' => (int) $value,
                 'float' => (float) $value,
-                'bool' => (bool) $value,
+                'bool' => is_string($value)
+                    ? match ($value) {
+                        'true' => true,
+                        'false' => false,
+                        default => (bool) $value
+                    } : (bool) $value,
                 'string' => (string) $value,
                 'date', 'datetime' => static::convertValueToDateTime($value),
                 'array', 'mixed' => $value,
@@ -93,6 +92,10 @@ trait Deserializes
             if (! class_exists($type) && ! interface_exists($type)) {
                 throw new InvalidAttributeTypeException("Neither the Class nor Interface `$type` exists");
             } elseif ($type == DateTimeInterface::class) {
+                if ($value === null || $value === '') {
+                    return null;
+                }
+
                 return static::convertValueToDateTime($value);
             }
 

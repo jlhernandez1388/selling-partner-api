@@ -15,24 +15,23 @@ use SellingPartnerApi\Dto;
 final class Context extends Dto
 {
     /**
-     * @param  ?string  $storeName  The name of the store that is related to the transaction.
-     * @param  ?string  $orderType  The transaction's order type.
+     * @param  ?string  $storeName  The store name associated with the transaction.
+     * @param  ?string  $orderType  Order type of the transaction.
      * @param  ?string  $channel  Channel details of related transaction.
-     * @param  ?string  $asin  The Amazon Standard Identification Number (ASIN) of the item.
-     * @param  ?string  $sku  The Stock Keeping Unit (SKU) of the item.
-     * @param  ?int  $quantityShipped  The quantity of the item shipped.
-     * @param  ?string  $fulfillmentNetwork  The fulfillment network of the item.
-     * @param  ?string  $paymentType  The type of payment.
-     * @param  ?string  $paymentMethod  The method of payment.
-     * @param  ?string  $paymentReference  The reference number of the payment.
-     * @param  ?\DateTimeInterface  $paymentDate  A date in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
-     * @param  ?string  $deferralReason  Deferral policy applied on the transaction.
+     * @param  ?string  $asin  Amazon Standard Identification Number (ASIN) of the item.
+     * @param  ?string  $sku  Stock keeping unit (SKU) of the item.
+     * @param  ?int  $quantityShipped  Quantity of the item shipped.
+     * @param  ?string  $fulfillmentNetwork  Fulfillment network of the item.
+     * @param  ?string  $paymentType  Type of payment made.
+     * @param  ?string  $paymentMethod  Method of payment made.
+     * @param  ?string  $paymentReference  Reference number of payment made.
+     * @param  ?\DateTimeInterface  $paymentDate  Fields with a schema type of date are in ISO 8601 date time format (for example GroupBeginDate).
+     * @param  ?string  $deferralReason  The deferral policy applied to the transaction.
      *
-     * **Examples:** `B2B`,`DD7`
-     * @param  ?\DateTimeInterface  $maturityDate  A date in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
-     * @param  ?string  $deferralStatus  The status of the transaction. For example, `HOLD`,`RELEASE`.
-     * @param  ?\DateTimeInterface  $startTime  A date in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
-     * @param  ?\DateTimeInterface  $endTime  A date in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+     * **Examples:** `B2B` (invoiced orders), `DD7` (delivery date policy)
+     * @param  ?\DateTimeInterface  $maturityDate  Fields with a schema type of date are in ISO 8601 date time format (for example GroupBeginDate).
+     * @param  ?\DateTimeInterface  $startTime  Fields with a schema type of date are in ISO 8601 date time format (for example GroupBeginDate).
+     * @param  ?\DateTimeInterface  $endTime  Fields with a schema type of date are in ISO 8601 date time format (for example GroupBeginDate).
      */
     public function __construct(
         public string $contextType,
@@ -49,7 +48,6 @@ final class Context extends Dto
         public ?\DateTimeInterface $paymentDate = null,
         public ?string $deferralReason = null,
         public ?\DateTimeInterface $maturityDate = null,
-        public ?string $deferralStatus = null,
         public ?\DateTimeInterface $startTime = null,
         public ?\DateTimeInterface $endTime = null,
     ) {}

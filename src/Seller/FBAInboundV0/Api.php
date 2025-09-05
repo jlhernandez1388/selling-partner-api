@@ -4,84 +4,15 @@ namespace SellingPartnerApi\Seller\FBAInboundV0;
 
 use Saloon\Http\Response;
 use SellingPartnerApi\BaseResource;
-use SellingPartnerApi\Seller\FBAInboundV0\Dto\CreateInboundShipmentPlanRequest;
-use SellingPartnerApi\Seller\FBAInboundV0\Dto\InboundShipmentRequest;
-use SellingPartnerApi\Seller\FBAInboundV0\Dto\PutTransportDetailsRequest;
-use SellingPartnerApi\Seller\FBAInboundV0\Requests\ConfirmPreorder;
-use SellingPartnerApi\Seller\FBAInboundV0\Requests\ConfirmTransport;
-use SellingPartnerApi\Seller\FBAInboundV0\Requests\CreateInboundShipment;
-use SellingPartnerApi\Seller\FBAInboundV0\Requests\CreateInboundShipmentPlan;
-use SellingPartnerApi\Seller\FBAInboundV0\Requests\EstimateTransport;
 use SellingPartnerApi\Seller\FBAInboundV0\Requests\GetBillOfLading;
 use SellingPartnerApi\Seller\FBAInboundV0\Requests\GetLabels;
-use SellingPartnerApi\Seller\FBAInboundV0\Requests\GetPreorderInfo;
 use SellingPartnerApi\Seller\FBAInboundV0\Requests\GetPrepInstructions;
 use SellingPartnerApi\Seller\FBAInboundV0\Requests\GetShipmentItems;
 use SellingPartnerApi\Seller\FBAInboundV0\Requests\GetShipmentItemsByShipmentId;
 use SellingPartnerApi\Seller\FBAInboundV0\Requests\GetShipments;
-use SellingPartnerApi\Seller\FBAInboundV0\Requests\GetTransportDetails;
-use SellingPartnerApi\Seller\FBAInboundV0\Requests\PutTransportDetails;
-use SellingPartnerApi\Seller\FBAInboundV0\Requests\UpdateInboundShipment;
-use SellingPartnerApi\Seller\FBAInboundV0\Requests\VoidTransport;
 
 class Api extends BaseResource
 {
-    /**
-     * @param  CreateInboundShipmentPlanRequest  $createInboundShipmentPlanRequest  The request schema for the createInboundShipmentPlan operation.
-     */
-    public function createInboundShipmentPlan(
-        CreateInboundShipmentPlanRequest $createInboundShipmentPlanRequest,
-    ): Response {
-        $request = new CreateInboundShipmentPlan($createInboundShipmentPlanRequest);
-
-        return $this->connector->send($request);
-    }
-
-    /**
-     * @param  string  $shipmentId  A shipment identifier originally returned by the createInboundShipmentPlan operation.
-     * @param  InboundShipmentRequest  $inboundShipmentRequest  The request schema for an inbound shipment.
-     */
-    public function updateInboundShipment(string $shipmentId, InboundShipmentRequest $inboundShipmentRequest): Response
-    {
-        $request = new UpdateInboundShipment($shipmentId, $inboundShipmentRequest);
-
-        return $this->connector->send($request);
-    }
-
-    /**
-     * @param  string  $shipmentId  A shipment identifier originally returned by the createInboundShipmentPlan operation.
-     * @param  InboundShipmentRequest  $inboundShipmentRequest  The request schema for an inbound shipment.
-     */
-    public function createInboundShipment(string $shipmentId, InboundShipmentRequest $inboundShipmentRequest): Response
-    {
-        $request = new CreateInboundShipment($shipmentId, $inboundShipmentRequest);
-
-        return $this->connector->send($request);
-    }
-
-    /**
-     * @param  string  $shipmentId  A shipment identifier originally returned by the createInboundShipmentPlan operation.
-     * @param  string  $marketplaceId  A marketplace identifier. Specifies the marketplace the shipment is tied to.
-     */
-    public function getPreorderInfo(string $shipmentId, string $marketplaceId): Response
-    {
-        $request = new GetPreorderInfo($shipmentId, $marketplaceId);
-
-        return $this->connector->send($request);
-    }
-
-    /**
-     * @param  string  $shipmentId  A shipment identifier originally returned by the createInboundShipmentPlan operation.
-     * @param  \DateTimeInterface  $needByDate  Date that the shipment must arrive at the Amazon fulfillment center to avoid delivery promise breaks for pre-ordered items. Must be in YYYY-MM-DD format. The response to the getPreorderInfo operation returns this value.
-     * @param  string  $marketplaceId  A marketplace identifier. Specifies the marketplace the shipment is tied to.
-     */
-    public function confirmPreorder(string $shipmentId, \DateTimeInterface $needByDate, string $marketplaceId): Response
-    {
-        $request = new ConfirmPreorder($shipmentId, $needByDate, $marketplaceId);
-
-        return $this->connector->send($request);
-    }
-
     /**
      * @param  string  $shipToCountryCode  The country code of the country to which the items will be shipped. Note that labeling requirements and item preparation instructions can vary by country.
      * @param  ?array  $sellerSkuList  A list of SellerSKU values. Used to identify items for which you want labeling requirements and item preparation instructions for shipment to Amazon's fulfillment network. The SellerSKU is qualified by the Seller ID, which is included with every call to the Seller Partner API.
@@ -103,65 +34,12 @@ class Api extends BaseResource
 
     /**
      * @param  string  $shipmentId  A shipment identifier originally returned by the createInboundShipmentPlan operation.
-     */
-    public function getTransportDetails(string $shipmentId): Response
-    {
-        $request = new GetTransportDetails($shipmentId);
-
-        return $this->connector->send($request);
-    }
-
-    /**
-     * @param  string  $shipmentId  A shipment identifier originally returned by the createInboundShipmentPlan operation.
-     * @param  PutTransportDetailsRequest  $putTransportDetailsRequest  The request schema for a putTransportDetails operation.
-     */
-    public function putTransportDetails(
-        string $shipmentId,
-        PutTransportDetailsRequest $putTransportDetailsRequest,
-    ): Response {
-        $request = new PutTransportDetails($shipmentId, $putTransportDetailsRequest);
-
-        return $this->connector->send($request);
-    }
-
-    /**
-     * @param  string  $shipmentId  A shipment identifier originally returned by the createInboundShipmentPlan operation.
-     */
-    public function voidTransport(string $shipmentId): Response
-    {
-        $request = new VoidTransport($shipmentId);
-
-        return $this->connector->send($request);
-    }
-
-    /**
-     * @param  string  $shipmentId  A shipment identifier originally returned by the createInboundShipmentPlan operation.
-     */
-    public function estimateTransport(string $shipmentId): Response
-    {
-        $request = new EstimateTransport($shipmentId);
-
-        return $this->connector->send($request);
-    }
-
-    /**
-     * @param  string  $shipmentId  A shipment identifier originally returned by the createInboundShipmentPlan operation.
-     */
-    public function confirmTransport(string $shipmentId): Response
-    {
-        $request = new ConfirmTransport($shipmentId);
-
-        return $this->connector->send($request);
-    }
-
-    /**
-     * @param  string  $shipmentId  A shipment identifier originally returned by the createInboundShipmentPlan operation.
      * @param  string  $pageType  The page type to use to print the labels. Submitting a PageType value that is not supported in your marketplace returns an error.
      * @param  string  $labelType  The type of labels requested.
      * @param  ?int  $numberOfPackages  The number of packages in the shipment.
      * @param  ?array  $packageLabelsToPrint  A list of identifiers that specify packages for which you want package labels printed.
      *
-     * If you provide box content information with the [FBA Inbound Shipment Carton Information Feed](https://developer-docs.amazon.com/sp-api/docs/fulfillment-by-amazon-feed-type-values#fba-inbound-shipment-carton-information-feed), then `PackageLabelsToPrint` must match the `CartonId` values you provide through that feed. If you provide box content information with the Fulfillment Inbound API v2024-03-20, then `PackageLabelsToPrint` must match the `boxID` values from the [`listShipmentBoxes`](https://developer-docs.amazon.com/sp-api/docs/fulfillment-inbound-api-v2024-03-20-reference#listshipmentboxes) response. If these values do not match as required, the operation returns the `IncorrectPackageIdentifier` error code.
+     * If you provide box content information with the [FBA Inbound Shipment Carton Information Feed](https://developer-docs.amazon.com/sp-api/docs/fulfillment-by-amazon-feed-type-values#fba-inbound-shipment-carton-information-feed), then `PackageLabelsToPrint` must match the `CartonId` values you provide through that feed. If you provide box content information with the Fulfillment Inbound API v2024-03-20, then `PackageLabelsToPrint` must match the `boxID` values from the [`listShipmentBoxes`](https://developer-docs.amazon.com/sp-api/reference/listshipmentboxes) response. If these values do not match as required, the operation returns the `IncorrectPackageIdentifier` error code.
      * @param  ?int  $numberOfPallets  The number of pallets in the shipment. This returns four identical labels for each pallet.
      * @param  ?int  $pageSize  The page size for paginating through the total packages' labels. This is a required parameter for Non-Partnered LTL Shipments. Max value:1000.
      * @param  ?int  $pageStartIndex  The page start index for paginating through the total packages' labels. This is a required parameter for Non-Partnered LTL Shipments.
@@ -216,9 +94,9 @@ class Api extends BaseResource
 
     /**
      * @param  string  $shipmentId  A shipment identifier used for selecting items in a specific inbound shipment.
-     * @param  string  $marketplaceId  A marketplace identifier. Specifies the marketplace where the product would be stored.
+     * @param  ?string  $marketplaceId  Deprecated. Do not use.
      */
-    public function getShipmentItemsByShipmentId(string $shipmentId, string $marketplaceId): Response
+    public function getShipmentItemsByShipmentId(string $shipmentId, ?string $marketplaceId = null): Response
     {
         $request = new GetShipmentItemsByShipmentId($shipmentId, $marketplaceId);
 

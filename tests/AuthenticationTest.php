@@ -5,7 +5,11 @@ declare(strict_types=1);
 namespace SellingPartnerApi\Tests;
 
 use DateTimeImmutable;
+use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\RequestInterface;
 use Saloon\Config;
 use Saloon\Exceptions\Request\Statuses\UnauthorizedException;
 use Saloon\Http\Faking\MockClient;
@@ -19,13 +23,13 @@ use SellingPartnerApi\SellingPartnerApi;
 
 class AuthenticationTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         MockClient::destroyGlobal();
         Config::preventStrayRequests();
     }
 
-    public function testFetchesNewAccessToken(): void
+    public function test_fetches_new_access_token(): void
     {
         $mockClient = new MockClient([
             GetAccessTokenRequest::class => fn () => MockResponse::make([
@@ -62,7 +66,7 @@ class AuthenticationTest extends TestCase
         );
     }
 
-    public function testThrowsUnauthorizedErrorIfAccessTokenRequestFails(): void
+    public function test_throws_unauthorized_error_if_access_token_request_fails(): void
     {
         $mockClient = new MockClient([
             GetAccessTokenRequest::class => fn () => MockResponse::make(status: 401),
@@ -80,7 +84,7 @@ class AuthenticationTest extends TestCase
         $connector->defaultAuth();
     }
 
-    public function testFetchesNewGrantlessToken(): void
+    public function test_fetches_new_grantless_token(): void
     {
         $mockClient = new MockClient([
             GetAccessTokenRequest::class => fn () => MockResponse::make([
@@ -115,7 +119,7 @@ class AuthenticationTest extends TestCase
         );
     }
 
-    public function testFetchesNewRestrictedDataTokenFromGenericEndpointPath(): void
+    public function test_fetches_new_restricted_data_token_from_generic_endpoint_path(): void
     {
         $mockClient = new MockClient([
             GetAccessTokenRequest::class => fn () => MockResponse::make([
@@ -163,7 +167,7 @@ class AuthenticationTest extends TestCase
         );
     }
 
-    public function testCreatesNewRestrictedDataTokenFromSpecificEndpointPath(): void
+    public function test_creates_new_restricted_data_token_from_specific_endpoint_path(): void
     {
         $mockClient = new MockClient([
             GetAccessTokenRequest::class => fn () => MockResponse::make([
@@ -208,7 +212,7 @@ class AuthenticationTest extends TestCase
         );
     }
 
-    public function testCreatesNewRestrictedDataTokenWithDataElements(): void
+    public function test_creates_new_restricted_data_token_with_data_elements(): void
     {
         $mockClient = new MockClient([
             GetAccessTokenRequest::class => fn () => MockResponse::make([
@@ -254,7 +258,7 @@ class AuthenticationTest extends TestCase
         );
     }
 
-    public function testCreatesNewDelegatedRestrictedDataToken(): void
+    public function test_creates_new_delegated_restricted_data_token(): void
     {
         $mockClient = new MockClient([
             GetAccessTokenRequest::class => fn () => MockResponse::make([
@@ -296,5 +300,38 @@ class AuthenticationTest extends TestCase
             ],
             $mockClient->getLastPendingRequest()->body()->all()
         );
+    }
+
+    public function test_uses_custom_authentication_client(): void
+    {
+        $called = false;
+        function test_middleware()
+        {
+            return function (callable $handler) use (&$called) {
+                return function (RequestInterface $request, array $options) use ($handler, &$called) {
+                    $called = true;
+                    $request = $request->withHeader('X-Test', 'test');
+
+                    return $handler($request, $options);
+                };
+            };
+        }
+
+        $stack = new HandlerStack;
+        $stack->setHandler(new MockHandler);
+        $stack->push(test_middleware());
+        $httpClient = new Client(['handler' => $stack]);
+
+        $connector = SellingPartnerApi::seller(
+            clientId: 'client-id',
+            clientSecret: 'client-secret',
+            refreshToken: 'refresh-token',
+            endpoint: Endpoint::NA_SANDBOX,
+            authenticationClient: $httpClient,
+        );
+
+        $connector->defaultAuth();
+
+        $this->assertFalse($called);
     }
 }

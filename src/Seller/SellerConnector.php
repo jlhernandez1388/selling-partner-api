@@ -49,6 +49,11 @@ class SellerConnector extends SellingPartnerApi
         return new CatalogItemsV0\Api($this);
     }
 
+    public function customerFeedbackV20240601(): CustomerFeedbackV20240601\Api
+    {
+        return new CustomerFeedbackV20240601\Api($this);
+    }
+
     public function dataKioskV20231115(): DataKioskV20231115\Api
     {
         return new DataKioskV20231115\Api($this);
@@ -184,6 +189,11 @@ class SellerConnector extends SellingPartnerApi
         return new SellersV1\Api($this);
     }
 
+    public function sellerWalletV20240320(): SellerWalletV20240301\Api
+    {
+        return new SellerWalletV20240301\Api($this);
+    }
+
     public function servicesV1(): ServicesV1\Api
     {
         return new ServicesV1\Api($this);
@@ -227,5 +237,10 @@ class SellerConnector extends SellingPartnerApi
     public function uploadsV20201101(): UploadsV20201101\Api
     {
         return new UploadsV20201101\Api($this);
+    }
+
+    public function vehiclesV20241101(): VehiclesV20241101\Api
+    {
+        return new VehiclesV20241101\Api($this);
     }
 }

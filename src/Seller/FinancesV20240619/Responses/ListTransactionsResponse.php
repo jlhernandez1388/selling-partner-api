@@ -11,18 +11,14 @@ declare(strict_types=1);
 namespace SellingPartnerApi\Seller\FinancesV20240619\Responses;
 
 use SellingPartnerApi\Response;
-use SellingPartnerApi\Seller\FinancesV20240619\Dto\Transaction;
+use SellingPartnerApi\Seller\FinancesV20240619\Dto\TransactionsPayload;
 
 final class ListTransactionsResponse extends Response
 {
-    protected static array $complexArrayTypes = ['transactions' => Transaction::class];
-
     /**
-     * @param  ?string  $nextToken  The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
-     * @param  Transaction[]|null  $transactions  A list of transactions within the specified time period.
+     * @param  ?TransactionsPayload  $payload  The payload for the `listTransactions` operation.
      */
     public function __construct(
-        public readonly ?string $nextToken = null,
-        public readonly ?array $transactions = null,
+        public readonly ?TransactionsPayload $payload = null,
     ) {}
 }

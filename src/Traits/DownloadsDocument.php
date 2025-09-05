@@ -31,6 +31,7 @@ trait DownloadsDocument
         ?string $documentType = null,
         bool $postProcess = true,
         ?string $encoding = null,
+        ?Client $client = null,
     ): array|string|SimpleXMLElement {
         if (! $documentType && $postProcess) {
             throw new InvalidArgumentException(
@@ -38,7 +39,7 @@ trait DownloadsDocument
             );
         }
 
-        $client = new Client;
+        $client = $client ?? new Client;
 
         if ($documentType) {
             $this->documentTypeInfo = static::documentTypeInfo($documentType);
@@ -73,12 +74,13 @@ trait DownloadsDocument
         // SimpleXML or as a plain TAB/CSV, but the original encoding is required to parse XLSX
         // and PDF documents.
         if (! ($contentType === ContentType::XLSX || $contentType === ContentType::PDF)) {
-            $this->encoding = $this->detectEncoding($contents, $response);
             $contents = mb_convert_encoding(
                 $contents,
                 static::$defaultEncoding,
-                $this->encoding ?? mb_internal_encoding()
+                $this->detectEncoding($contents, $response) ?? mb_internal_encoding()
             );
+            // Encoding is now $defaultEncoding
+            $this->encoding = static::$defaultEncoding;
         }
 
         return $this->parseDocument($contents);
@@ -89,9 +91,9 @@ trait DownloadsDocument
      *
      * @return StreamInterface The raw (unencrypted) document stream.
      */
-    public function downloadStream(): StreamInterface
+    public function downloadStream(?Client $client = null): StreamInterface
     {
-        $client = new Client;
+        $client = $client ?? new Client;
         try {
             $response = $client->request('GET', $this->url, ['stream' => true]);
         } catch (ClientException $e) {
@@ -221,13 +223,17 @@ trait DownloadsDocument
             $encoding = static::$defaultEncoding;
         } elseif (! $this->encoding) {
             // If encoding is not provided try to automatically detect the encoding from the HTTP response
-            $encodings = [static::$defaultEncoding];
+            // In some reports, japanese encoding is not sent in the response header,
+            // so need to be forced as an option
+            $encodings = [static::$defaultEncoding, 'CP932'];
             if ($response->hasHeader('Content-Type')) {
                 $parsed = Header::parse($response->getHeader('Content-Type'));
 
                 foreach ($parsed as $header) {
                     if ($header['charset'] ?? null) {
-                        $headerEncoding = $header['charset'];
+                        // Some reports are reporting 'Cp1252' encoding in the header,
+                        // while they really are 'ISO-8859-1'.
+                        $headerEncoding = str_replace('Cp1252', 'ISO-8859-1', $header['charset']);
                         array_unshift($encodings, $headerEncoding);
                         break;
                     }

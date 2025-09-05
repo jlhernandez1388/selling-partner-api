@@ -31,10 +31,12 @@ class PurchaseShipment extends Request implements HasBody
 
     /**
      * @param  PurchaseShipmentRequest  $purchaseShipmentRequest  The request schema for the purchaseShipment operation.
+     * @param  ?string  $xAmznIdempotencyKey  A unique value which the server uses to recognize subsequent retries of the same request.
      * @param  ?string  $xAmznShippingBusinessId  Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
      */
     public function __construct(
         public PurchaseShipmentRequest $purchaseShipmentRequest,
+        protected ?string $xAmznIdempotencyKey = null,
         protected ?string $xAmznShippingBusinessId = null,
     ) {}
 
@@ -62,6 +64,6 @@ class PurchaseShipment extends Request implements HasBody
 
     public function defaultHeaders(): array
     {
-        return array_filter(['x-amzn-shipping-business-id' => $this->xAmznShippingBusinessId]);
+        return array_filter(['x-amzn-IdempotencyKey' => $this->xAmznIdempotencyKey, 'x-amzn-shipping-business-id' => $this->xAmznShippingBusinessId]);
     }
 }

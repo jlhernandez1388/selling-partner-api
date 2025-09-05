@@ -1126,7 +1126,9 @@
                                                     "state": "CA",
                                                     "warehouseId": "ABC1"
                                                 },
-                                                "contentInformationSource": "BOX_CONTENT_PROVIDED"
+                                                "contentInformationSource": "BOX_CONTENT_PROVIDED",
+                                                "externalContainerIdentifier": "001962990007752988",
+                                                "externalContainerIdentifierType": "SSCC"
                                             }
                                         ],
                                         "pagination": {
@@ -2258,7 +2260,9 @@
                                                     "state": "CA",
                                                     "warehouseId": "ABC1"
                                                 },
-                                                "contentInformationSource": "BOX_CONTENT_PROVIDED"
+                                                "contentInformationSource": "BOX_CONTENT_PROVIDED",
+                                                "externalContainerIdentifier": "001962990007752988",
+                                                "externalContainerIdentifierType": "SSCC"
                                             }
                                         ],
                                         "pagination": {
@@ -3215,6 +3219,57 @@
                                                     {
                                                         "shippingSolution": "AMAZON_PARTNERED_CARRIER",
                                                         "shippingMode": "GROUND_SMALL_PARCEL"
+                                                    }
+                                                ],
+                                                "supportedConfigurations": [
+                                                    {
+                                                        "boxPackingMethods": [
+                                                            "BOX_CONTENT_PROVIDED"
+                                                        ],
+                                                        "boxRequirements": {
+                                                            "weight": {
+                                                                "unit": "KG",
+                                                                "minimum": 1,
+                                                                "maximum": 25
+                                                            }
+                                                        },
+                                                        "shippingRequirements": [
+                                                            {
+                                                                "solution": "USE_YOUR_OWN_CARRIER",
+                                                                "modes": [
+                                                                    "FREIGHT_LTL",
+                                                                    "GROUND_SMALL_PARCEL"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "boxPackingMethods": [
+                                                            "MANUAL_PROCESS",
+                                                            "BARCODE_2D"
+                                                        ],
+                                                        "boxRequirements": {
+                                                            "weight": {
+                                                                "unit": "KG",
+                                                                "minimum": 1,
+                                                                "maximum": 15
+                                                            }
+                                                        },
+                                                        "shippingRequirements": [
+                                                            {
+                                                                "solution": "USE_YOUR_OWN_CARRIER",
+                                                                "modes": [
+                                                                    "FREIGHT_LTL",
+                                                                    "GROUND_SMALL_PARCEL"
+                                                                ]
+                                                            },
+                                                            {
+                                                                "solution": "AMAZON_PARTNERED_CARRIER",
+                                                                "modes": [
+                                                                    "GROUND_SMALL_PARCEL"
+                                                                ]
+                                                            }
+                                                        ]
                                                     }
                                                 ]
                                             }
@@ -5556,7 +5611,9 @@
                                                     "state": "CA",
                                                     "warehouseId": "ABC1"
                                                 },
-                                                "contentInformationSource": "BOX_CONTENT_PROVIDED"
+                                                "contentInformationSource": "BOX_CONTENT_PROVIDED",
+                                                "externalContainerIdentifier": "001962990007752988",
+                                                "externalContainerIdentifierType": "SSCC"
                                             }
                                         ],
                                         "pagination": {
@@ -9104,7 +9161,7 @@
                 "tags": [
                     "FBAInboundV20240320"
                 ],
-                "description": "Cancels a self-ship appointment slot against a shipment.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
+                "description": "Cancels a self-ship appointment slot against a shipment. Only available in the following [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX, BR, EG, SA, AE, IN.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api). ",
                 "operationId": "cancelSelfShipAppointment",
                 "parameters": [
                     {
@@ -9386,7 +9443,7 @@
                 "tags": [
                     "FBAInboundV20240320"
                 ],
-                "description": "Retrieves a list of available self-ship appointment slots used to drop off a shipment at a warehouse.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 6 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
+                "description": "Retrieves a list of available self-ship appointment slots used to drop off a shipment at a warehouse. Only available in the following [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX, BR, EG, SA, AE, IN.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 6 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api). ",
                 "operationId": "getSelfShipAppointmentSlots",
                 "parameters": [
                     {
@@ -9685,7 +9742,7 @@
                 "tags": [
                     "FBAInboundV20240320"
                 ],
-                "description": "Initiates the process of generating the appointment slots list.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 2 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
+                "description": "Initiates the process of generating the appointment slots list. Only available in the following [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX, BR, EG, SA, AE, IN.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 2 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api). ",
                 "operationId": "generateSelfShipAppointmentSlots",
                 "parameters": [
                     {
@@ -9969,7 +10026,7 @@
                 "tags": [
                     "FBAInboundV20240320"
                 ],
-                "description": "Confirms or reschedules a self-ship appointment slot against a shipment.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 2 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
+                "description": "Confirms or reschedules a self-ship appointment slot against a shipment. Only available in the following [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX, BR, EG, SA, AE, IN.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 2 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api). ",
                 "operationId": "scheduleSelfShipAppointment",
                 "parameters": [
                     {
@@ -13803,6 +13860,18 @@
                     "dimensions": {
                         "$ref": "#/components/schemas/Dimensions"
                     },
+                    "externalContainerIdentifier": {
+                        "maxLength": 1024,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "The external identifier for this container / box."
+                    },
+                    "externalContainerIdentifierType": {
+                        "maxLength": 1024,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Type of the external identifier used. Can be: `AMAZON`, `SSCC`."
+                    },
                     "items": {
                         "type": "array",
                         "description": "Items contained within the box.",
@@ -13915,6 +13984,18 @@
                         "value": 5.5
                     }
                 }
+            },
+            "BoxRequirements": {
+                "required": [
+                    "weight"
+                ],
+                "type": "object",
+                "properties": {
+                    "weight": {
+                        "$ref": "#/components/schemas/WeightRange"
+                    }
+                },
+                "description": "The requirements for a box in the packing option."
             },
             "BoxUpdateInput": {
                 "required": [
@@ -14156,9 +14237,6 @@
                                 "email": "email@email.com",
                                 "name": "John Smithy",
                                 "phoneNumber": "1234567890"
-                            },
-                            "deliveryWindow": {
-                                "start": "2024-01-01T00:00Z"
                             },
                             "shipmentId": "sh1234abcd-1234-abcd-5678-1234abcd5678",
                             "transportationOptionId": "to1234abcd-1234-abcd-5678-1234abcd5678"
@@ -16020,6 +16098,29 @@
                     "shipmentId": "sh1234abcd-1234-abcd-5678-1234abcd5678"
                 }
             },
+            "PackingConfiguration": {
+                "type": "object",
+                "properties": {
+                    "boxPackingMethods": {
+                        "type": "array",
+                        "description": "The box content information sources that are allowed.",
+                        "items": {
+                            "$ref": "#/components/schemas/BoxContentInformationSource"
+                        }
+                    },
+                    "boxRequirements": {
+                        "$ref": "#/components/schemas/BoxRequirements"
+                    },
+                    "shippingRequirements": {
+                        "type": "array",
+                        "description": "A list of supported shipping requirements for this packing configuration.",
+                        "items": {
+                            "$ref": "#/components/schemas/ShippingRequirements"
+                        }
+                    }
+                },
+                "description": "A way to configure this packing option. Some box content information sources might not be allowed. Non-standard minimum and maximum box weights might be enforced."
+            },
             "PackingOption": {
                 "required": [
                     "discounts",
@@ -16027,6 +16128,7 @@
                     "packingGroups",
                     "packingOptionId",
                     "status",
+                    "supportedConfigurations",
                     "supportedShippingConfigurations"
                 ],
                 "type": "object",
@@ -16074,9 +16176,16 @@
                         "type": "string",
                         "description": "The status of the packing option. Possible values: `OFFERED`, `ACCEPTED`, `EXPIRED`."
                     },
+                    "supportedConfigurations": {
+                        "type": "array",
+                        "description": "A list of possible configurations for this option.",
+                        "items": {
+                            "$ref": "#/components/schemas/PackingConfiguration"
+                        }
+                    },
                     "supportedShippingConfigurations": {
                         "type": "array",
-                        "description": "List of supported shipping modes.",
+                        "description": "**This field is deprecated**. Use the `shippingRequirements` property under `supportedConfigurations` instead. List of supported shipping modes.",
                         "items": {
                             "$ref": "#/components/schemas/ShippingConfiguration"
                         }
@@ -17069,6 +17178,32 @@
                 },
                 "description": "The shipping configurations supported for the packing option. Available modes are ground small parcel, freight less-than-truckload (LTL), freight full-truckload (FTL) palletized, freight FTL non-palletized, ocean less-than-container-load (LCL), ocean full-container load (FCL), air small parcel, and air small parcel express."
             },
+            "ShippingRequirements": {
+                "required": [
+                    "modes",
+                    "solution"
+                ],
+                "type": "object",
+                "properties": {
+                    "modes": {
+                        "type": "array",
+                        "description": "Available shipment modes for this shipping program.",
+                        "items": {
+                            "maxLength": 1024,
+                            "minLength": 1,
+                            "pattern": "^[a-zA-Z0-9-._\\s]*$",
+                            "type": "string"
+                        }
+                    },
+                    "solution": {
+                        "maxLength": 1024,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Shipping program for the option. Can be: `AMAZON_PARTNERED_CARRIER`, `USE_YOUR_OWN_CARRIER`."
+                    }
+                },
+                "description": "The possible shipping modes for the packing option for a given shipping solution or program. Available solutions are Amazon-Partnered Carrier and Use Your Own Carrier. Available modes are ground small parcel, freight less-than-truckload (LTL), freight full-truckload (FTL) palletized, freight FTL non-palletized, ocean less-than-container-load (LCL), ocean full-container load (FCL), air small parcel, and air small parcel express."
+            },
             "SpdTrackingDetail": {
                 "type": "object",
                 "properties": {
@@ -17574,6 +17709,32 @@
                     }
                 },
                 "description": "The weight of a package."
+            },
+            "WeightRange": {
+                "required": [
+                    "maximum",
+                    "minimum",
+                    "unit"
+                ],
+                "type": "object",
+                "properties": {
+                    "maximum": {
+                        "maximum": 100000,
+                        "minimum": 0,
+                        "type": "number",
+                        "description": "Maximum allowed weight."
+                    },
+                    "minimum": {
+                        "maximum": 100000,
+                        "minimum": 0,
+                        "type": "number",
+                        "description": "Minimum allowed weight."
+                    },
+                    "unit": {
+                        "$ref": "#/components/schemas/UnitOfWeight"
+                    }
+                },
+                "description": "The range of weights that are allowed for a package."
             },
             "Window": {
                 "required": [

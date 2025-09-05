@@ -15,12 +15,13 @@ use SellingPartnerApi\Dto;
 final class FeaturedOfferExpectedPriceRequest extends Dto
 {
     /**
-     * @param  string  $uri  The URI associated with an individual request within a batch. For `FeaturedOfferExpectedPrice`, this should be `/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice`.
+     * @param  string  $uri  The URI associated with an individual request within a batch. For `FeaturedOfferExpectedPrice`, this is `/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice`.
      * @param  string  $method  The HTTP method associated with an individual request within a batch.
-     * @param  string  $marketplaceId  A marketplace identifier. Specifies the marketplace for which data is returned.
+     * @param  string  $marketplaceId  The marketplace ID is the globally unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
      * @param  string  $sku  The seller SKU of the item.
-     * @param  ?array[]  $body  Additional HTTP body information associated with an individual request within a batch.
-     * @param  ?string[]  $headers  A mapping of additional HTTP headers to send/receive for an individual request within a batch.
+     * @param  ?array[]  $body  Additional HTTP body information that is associated with an individual request within a batch.
+     * @param  ?string[]  $headers  A mapping of additional HTTP headers to send or receive for an individual request within a batch.
+     * @param  ?Segment  $segment  Input segment for featured offer expected price. The segment contains the location information for which featured offer expected price is requested.
      */
     public function __construct(
         public string $uri,
@@ -29,5 +30,6 @@ final class FeaturedOfferExpectedPriceRequest extends Dto
         public string $sku,
         public ?array $body = null,
         public ?array $headers = null,
+        public ?Segment $segment = null,
     ) {}
 }

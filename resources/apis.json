@@ -53,6 +53,15 @@
                 }
             ]
         },
+        "customer-feedback": {
+            "name": "Customer Feedback",
+            "versions": [
+                {
+                    "version": "2024-06-01",
+                    "url": "https://raw.githubusercontent.com/amzn/selling-partner-api-models/refs/heads/main/models/customer-feedback-api-model/customerFeedback_2024-06-01.json"
+                }
+            ]
+        },
         "data-kiosk": {
             "name": "Data Kiosk",
             "versions": [
@@ -267,6 +276,15 @@
                 }
             ]
         },
+        "seller-wallet": {
+            "name": "Seller Wallet",
+            "versions": [
+                {
+                    "version": "2024-03-01",
+                    "url": "https://raw.githubusercontent.com/amzn/selling-partner-api-models/refs/heads/main/models/seller-wallet-api-model/sellerWallet_2024-03-01.json"
+                }
+            ]
+        },
         "services": {
             "name": "Services",
             "versions": [
@@ -295,8 +313,7 @@
                 },
                 {
                     "version": 2,
-                    "url": "https://developer-docs.amazon.com/amazon-shipping/docs/shipping-api-v2-model",
-                    "selector": "code[data-lang='json']"
+                    "url": "https://raw.githubusercontent.com/amzn/selling-partner-api-models/refs/heads/main/models/shipping-api-model/shippingV2.json"
                 }
             ]
         },
@@ -332,8 +349,7 @@
             "versions": [
                 {
                     "version": "2024-06-01",
-                    "url": "https://developer-docs.amazon.com/sp-api/docs/transfers-api-v2024-06-01-model",
-                    "selector": "code[data-lang='json']"
+                    "url": "https://raw.githubusercontent.com/amzn/selling-partner-api-models/refs/heads/main/models/finances-api-model/transfers_2024-06-01.json"
                 }
             ]
         },
@@ -343,6 +359,15 @@
                 {
                     "version": "2020-11-01",
                     "url": "https://raw.githubusercontent.com/amzn/selling-partner-api-models/main/models/uploads-api-model/uploads_2020-11-01.json"
+                }
+            ]
+        },
+        "vehicles": {
+            "name": "Vehicles",
+            "versions": [
+                {
+                    "version": "2024-11-01",
+                    "url": "https://raw.githubusercontent.com/amzn/selling-partner-api-models/refs/heads/main/models/vehicles-api-model/vehicles_2024-11-01.json"
                 }
             ]
         }
